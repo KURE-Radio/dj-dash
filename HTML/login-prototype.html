@@ -4,15 +4,34 @@
         <title>KURE DJ Dashboard</title>
         <script type="text/javascript" src="../Libraries/angular.min.js"></script>
         <script type="text/javascript" src="../Libraries/ui-bootstrap-tpls-0.4.0.js"></script>
-        <link rel="stylesheet" type="text/css" href="./Assets/base.css">
+        <link rel="stylesheet" type="text/css" href="../Libraries/bootstrap/css/bootstrap.css">
         <style>
-            #logo {
+            #login-form  {
+                margin-top: 15%;
+                text-align: center;
                 vertical-align: middle;
             }
         </style>
     </head>
 
     <body>
-        <img src="./Assets/200px-KURE-FM.png" id="logo">
+        <div style="margin: 5px;">
+            <i class="icon-home icon-white"></i>
+            <a href="http://www.kure.stuorg.iastate.edu">Return to KURE main page</a>
+        </div>
+        <div id="login-form">
+            <img src="./Assets/200px-KURE-FM.png" style="margin: 3%;">
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <label>
+                        <input type="text" placeholder="Username">
+                    </label>
+                    <label>
+                        <input type="password" placeholder="Password">
+                    </label>
+                    <button type="submit" class="btn btn-warning">Login</button>
+                </div>
+            </form>
+        </div>
     </body>
 </html>
