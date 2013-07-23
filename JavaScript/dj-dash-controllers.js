@@ -1,6 +1,30 @@
-angular.module('dj-dash', ['ui.bootstrap']);
+angular.module('dj-dash', ['ui.bootstrap'])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/transmitter-log', {
+                templateUrl: 'transmitter-log.html',
+                controller: TransmitterLogCtrl
+            })
+            .when('/roadmap', {
+                templateUrl: 'roadmap.html',
+                controller: RoadmapCtrl
+            })
+            .when('/playlist', {
+                templateUrl: 'playlist.html',
+                controller: PlaylistCtrl
+            })
+            .when('/grants-and-readers', {
+                templateUrl: 'grants-and-readers.html',
+                controller: GrantsAndReadersCtrl
+            })
+            .when('/library', {
+                templateUrl: 'music-library.html',
+                controller: MusicLibraryCtrl
+            });
+    }]);
 
 function DJNavbarCtrl($scope) {
+    "use strict";
     var toolbar_show_default = "500";
     var toolbar_hide_default = "10";
 
@@ -57,4 +81,24 @@ function DJNavbarCtrl($scope) {
             nav_link: "#"
         }
     ];
+}
+
+function TransmitterLogCtrl($scope) {
+    "use strict";
+}
+
+function RoadmapCtrl($scope) {
+    "use strict";
+}
+
+function PlaylistCtrl($scope) {
+    "use strict";
+}
+
+function GrantsAndReadersCtrl($scope) {
+    "use strict";
+}
+
+function MusicLibraryCtrl($scope) {
+    "use strict";
 }

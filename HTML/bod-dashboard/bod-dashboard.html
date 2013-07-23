@@ -2,10 +2,10 @@
 <html ng-app="bod-dash">
     <head>
         <title>KURE BOD Dashboard</title>
-        <script type="text/javascript" src="../Libraries/angular.min.js"></script>
-        <script type="text/javascript" src="../Libraries/ui-bootstrap-tpls-0.4.0.js"></script>
-        <script type="text/javascript" src="../JavaScript/bod-dash-navbar-controllers.js"></script>
-        <link rel="stylesheet" href="../Libraries/bootstrap/css/bootstrap.css">
+        <script type="text/javascript" src="../../Libraries/angular.min.js"></script>
+        <script type="text/javascript" src="../../Libraries/ui-bootstrap-tpls-0.4.0.js"></script>
+        <script type="text/javascript" src="../../JavaScript/bod-dash-controllers.js"></script>
+        <link rel="stylesheet" href="../../Libraries/bootstrap/css/bootstrap.css">
     </head>
 
     <body style="background-color: #5d0d0e;">
@@ -39,7 +39,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="./dj-dash-prototype.html" class="disabled">
+                                    <a href="../dj-dashboard/dj-dashboard.html" class="disabled">
                                         <i class="icon-headphones"></i>
                                         Open DJ Dashboard
                                     </a>
@@ -64,6 +64,7 @@
             </div>
         </div>
         <div class="container-fluid">
+            <div ng-view></div>
         </div>
     </body>
 </html>
