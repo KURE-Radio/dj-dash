@@ -1,27 +1,3 @@
-angular.module('dj-dash', ['ui.bootstrap'])
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider
-            .when('/transmitter-log', {
-                templateUrl: 'transmitter-log.html',
-                controller: TransmitterLogCtrl
-            })
-            .when('/roadmap', {
-                templateUrl: 'roadmap.html',
-                controller: RoadmapCtrl
-            })
-            .when('/playlist', {
-                templateUrl: 'playlist.html',
-                controller: PlaylistCtrl
-            })
-            .when('/grants-and-readers', {
-                templateUrl: 'grants-and-readers.html',
-                controller: GrantsAndReadersCtrl
-            })
-            .when('/library', {
-                templateUrl: 'music-library.html',
-                controller: MusicLibraryCtrl
-            });
-    }]);
 
 function DJNavbarCtrl($scope) {
     "use strict";
@@ -38,7 +14,7 @@ function DJNavbarCtrl($scope) {
                     show: toolbar_show_default,
                     hide: toolbar_hide_default
                 },
-            nav_link: "#"
+            nav_link: "#/transmitter-log"
         },
         {
             title: "Show Road-Map",
@@ -48,7 +24,7 @@ function DJNavbarCtrl($scope) {
                 show: toolbar_show_default,
                 hide: toolbar_hide_default
             },
-            nav_link: "#"
+            nav_link: "#/roadmap"
         },
         {
             title: "Playlist",
@@ -58,7 +34,7 @@ function DJNavbarCtrl($scope) {
                 show: toolbar_show_default,
                 hide: toolbar_hide_default
             },
-            nav_link: "#"
+            nav_link: "#/playlist"
         },
         {
             title: "Grants and Readers",
@@ -68,7 +44,7 @@ function DJNavbarCtrl($scope) {
                 show: toolbar_show_default,
                 hide: toolbar_hide_default
             },
-            nav_link: "#"
+            nav_link: "#/grants-and-readers"
         },
         {
             title: "Music Library",
@@ -78,27 +54,32 @@ function DJNavbarCtrl($scope) {
                 show: toolbar_show_default,
                 hide: toolbar_hide_default
             },
-            nav_link: "#"
+            nav_link: "#/library"
         }
     ];
 }
 
 function TransmitterLogCtrl($scope) {
     "use strict";
+    $scope.message = "The Transmitter Log feature is currently under construction."
 }
 
 function RoadmapCtrl($scope) {
     "use strict";
+    $scope.message = "The Road-Map feature is currently under construction."
 }
 
 function PlaylistCtrl($scope) {
     "use strict";
+    $scope.message = "The Playlist feature is currently under construction."
 }
 
 function GrantsAndReadersCtrl($scope) {
     "use strict";
+    $scope.message = "The Grants and Readers feature is currently under construction."
 }
 
 function MusicLibraryCtrl($scope) {
     "use strict";
+    $scope.message = "The Music Library feature is currently under construction."
 }
