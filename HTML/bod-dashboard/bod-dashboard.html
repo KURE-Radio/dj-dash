@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="bod-dash">
+    <head>
+        <title>KURE BOD Dashboard</title>
+        <script type="text/javascript" src="../../Libraries/angular.min.js"></script>
+        <script type="text/javascript" src="../../Libraries/ui-bootstrap-tpls-0.4.0.js"></script>
+        <script type="text/javascript" src="../../JavaScript/bod-dash-controllers.js"></script>
+        <script type="text/javascript" src="../../JavaScript/application-models.js"></script>
+        <link rel="stylesheet" href="../../Libraries/bootstrap/css/bootstrap.css">
+    </head>
+
+    <body style="background-color: #5d0d0e;">
+        <div class="container-fluid" id="KURE-navbar">
+            <div class="navbar" style="margin-top: 1%;" ng-controller="BODNavbarCtrl">
+                <div class="navbar-inner">
+                    <a class="brand" href="#">KURE BOD Dashboard</a>
+                    <ul class="nav">
+                        <li class="dropdown" ng-repeat="button in navbar_buttons">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                {{button.title}}
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="item in button.submenu_items">
+                                    <a href="{{item.nav_link}}">
+                                        <i class="{{item.icon}}"></i>
+                                        {{item.title}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav pull-right">
+                        <li class="divider-vertical"></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-user"></i>
+                                User Name
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../dj-dashboard/dj-dashboard.html" class="disabled">
+                                        <i class="icon-headphones"></i>
+                                        Open DJ Dashboard
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-cog"></i>
+                                        Edit Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-eject"></i>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div ng-view></div>
+        </div>
+    </body>
+</html>
