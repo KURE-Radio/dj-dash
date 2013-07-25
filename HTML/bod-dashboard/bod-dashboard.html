@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html ng-app="dj-dash">
+<html ng-app="bod-dash">
     <head>
-        <title></title>
-        <script type="text/javascript" src="../Libraries/angular.min.js"></script>
-        <script type="text/javascript" src="../Libraries/ui-bootstrap-tpls-0.4.0.js"></script>
-        <script type="text/javascript" src="../JavaScript/dj-dash-navbar-controllers.js"></script>
-        <link rel="stylesheet" href="../Libraries/bootstrap/css/bootstrap.css">
+        <title>KURE BOD Dashboard</title>
+        <script type="text/javascript" src="../../Libraries/angular.min.js"></script>
+        <script type="text/javascript" src="../../Libraries/ui-bootstrap-tpls-0.4.0.js"></script>
+        <script type="text/javascript" src="../../JavaScript/bod-dash-controllers.js"></script>
+        <script type="text/javascript" src="../../JavaScript/application-models.js"></script>
+        <link rel="stylesheet" href="../../Libraries/bootstrap/css/bootstrap.css">
     </head>
 
     <body style="background-color: #5d0d0e;">
         <div class="container-fluid" id="KURE-navbar">
-            <div class="navbar" style="margin-top: 1%;">
+            <div class="navbar" style="margin-top: 1%;" ng-controller="BODNavbarCtrl">
                 <div class="navbar-inner">
-                    <a class="brand" href="#">KURE DJ Dashboard</a>
-                    <ul class="nav" ng-controller="DJNavbarCtrl">
-                        <li ng-repeat="button in navbar_buttons">
-                            <a href="{{button.nav_link}}"
-                               data-toggle="tooltip"
-                               data-delay="show: {{button.tooltip.show}}, hide: {{button.tooltip.hide}}"
-                               title="{{button.tooltip.text}}">
-                                <i class="{{button.icon}}"></i>
+                    <a class="brand" href="#">KURE BOD Dashboard</a>
+                    <ul class="nav">
+                        <li class="dropdown" ng-repeat="button in navbar_buttons">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 {{button.title}}
+                                <b class="caret"></b>
                             </a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="item in button.submenu_items">
+                                    <a href="{{item.nav_link}}">
+                                        <i class="{{item.icon}}"></i>
+                                        {{item.title}}
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                     <ul class="nav pull-right">
@@ -34,9 +40,9 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#" class="disabled">
-                                        <i class="icon-wrench"></i>
-                                        Open BOD Dashboard
+                                    <a href="../dj-dashboard/dj-dashboard.html" class="disabled">
+                                        <i class="icon-headphones"></i>
+                                        Open DJ Dashboard
                                     </a>
                                 </li>
                                 <li class="divider"></li>
@@ -59,7 +65,7 @@
             </div>
         </div>
         <div class="container-fluid">
-
+            <div ng-view></div>
         </div>
     </body>
 </html>
