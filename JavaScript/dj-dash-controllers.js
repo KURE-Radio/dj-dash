@@ -66,7 +66,39 @@ function TransmitterLogCtrl($scope) {
 
 function RoadmapCtrl($scope) {
     "use strict";
-    $scope.message = "The Road-Map feature is currently under construction."
+    // Database call place-holder for sample track data
+    $scope.sample_tracks = [
+        {
+            title: "",
+            artist: "",
+            album: ""
+        },
+        {
+            title: "",
+            artist: "",
+            album: ""
+        },
+        {
+            title: "",
+            artist: "",
+            album: ""
+        },
+        {
+            title: "",
+            artist: "",
+            album: ""
+        },
+        {
+            title: "",
+            artist: "",
+            album: ""
+        },
+        {
+            title: "",
+            artist: "",
+            album: ""
+        }
+    ];
 }
 
 function PlaylistCtrl($scope) {
