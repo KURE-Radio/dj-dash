@@ -71,7 +71,15 @@ function RoadmapCtrl($scope) {
 
 function PlaylistCtrl($scope) {
     "use strict";
-    $scope.message = "The Playlist feature is currently under construction."
+    // Placeholder sample data for prototyping purposes
+    $scope.track_list = [
+        {
+            number: 1,
+            title: "Ends Of The Earth",
+            artist: "Lord Huron",
+            album: "Lonesome Dreams"
+        }
+    ];
 }
 
 function GrantsAndReadersCtrl($scope) {
