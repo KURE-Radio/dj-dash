@@ -69,17 +69,115 @@ function RoadmapCtrl($scope) {
     $scope.message = "The Road-Map feature is currently under construction."
 }
 
-function PlaylistCtrl($scope) {
+function PlaylistCtrl($scope, $dialog) {
     "use strict";
     // Placeholder sample data for prototyping purposes
-    $scope.track_list = [
-        {
-            number: 1,
-            title: "Ends Of The Earth",
-            artist: "Lord Huron",
-            album: "Lonesome Dreams"
+    $scope.track_list = [ ];
+
+    $scope.break_dialog_display_options = {
+            backdrop: true,
+            backdropFade: true,
+            dialogFade: true,
+            templateUrl: "break_dialog.html",
+            controller: "AddBreakDialogCtrl"
+    };
+
+    $scope.showEditButton = function(track) {
+        return(track.is_track && (!track.in_edit));
+    };
+
+    $scope.showConfirmButton = function(track) {
+        return(track.is_track && track.in_edit);
+    };
+
+    $scope.showTrackTitle = function(track) {
+        return(track.is_track && (!track.in_edit));
+    };
+
+    $scope.addTrack = function() {
+       cancelPreviousEdits();
+
+       $scope.track_list = $scope.track_list.concat([
+           {
+               track_number: getNextTrackNumber(),
+               is_track: true,
+               in_edit: true
+           }
+       ]);
+    };
+
+    $scope.removeTrack = function(track) {
+        if(track.in_edit) {
+            track.title = "";
+            track.artist = "";
+            track.album = "";
+        } else {
+            var track_index = $scope.track_list.indexOf(track);
+            $scope.track_list.splice(track_index, 1);
         }
-    ];
+    };
+
+    $scope.addBreak = function(selected_break_options) {
+        var break_message = "";
+
+        if(selected_break_options.id)
+            break_message += "Station ID, ";
+        if(selected_break_options.event)
+            break_message += "Event Reader, ";
+        if(selected_break_options.grant)
+            break_message += "Grant Reader, ";
+        if(selected_break_options.weather)
+            break_message += "Weather Report, ";
+        if(selected_break_options.gsb)
+            break_message += "GSB Reader, ";
+        if(selected_break_options.psa)
+            break_message += "PSA Reader, ";
+
+        break_message = break_message.replace(/\s$/, '').replace(/,$/, '');
+
+        if(selected_break_options.notes)
+            break_message += " (" + selected_break_options.notes + ")";
+
+        $scope.track_list = $scope.track_list.concat([
+            {
+                is_track: false,
+                title: break_message
+            }
+        ]);
+    };
+
+    $scope.openAddBreakDialog = function() {
+        var d = $dialog.dialog($scope.break_dialog_display_options);
+        d.open().then(function (selected_dialog_options) {
+            if(selected_dialog_options) {
+                $scope.addBreak(selected_dialog_options);
+            }
+        });
+    };
+
+    $scope.editListOrder = function() {
+
+    };
+
+    function getNextTrackNumber() {
+        var next_track_number = 0;
+
+        for(var index = $scope.track_list.length - 1; index >= 0; index--) {
+            if($scope.track_list[index].track_number) {
+                next_track_number = $scope.track_list[index].track_number;
+                break;
+            }
+        }
+
+        return next_track_number + 1;
+    }
+
+    function cancelPreviousEdits() {
+        for(var index = 0; index < $scope.track_list.length; index++) {
+            if($scope.track_list[index].is_track)
+                $scope.track_list[index].in_edit = false;
+        }
+    }
 }
 
 function GrantsAndReadersCtrl($scope) {
@@ -90,4 +188,14 @@ function GrantsAndReadersCtrl($scope) {
 function MusicLibraryCtrl($scope) {
     "use strict";
     $scope.message = "The Music Library feature is currently under construction."
+}
+
+function AddBreakDialogCtrl($scope, dialog) {
+    $scope.confirmBreakDialog = function(selected_dialog_options) {
+        dialog.close(selected_dialog_options);
+    };
+
+    $scope.cancelBreakDialog = function() {
+        dialog.close();
+    }
 }

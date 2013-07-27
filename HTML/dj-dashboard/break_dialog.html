@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h3>Add A Break</h3>
+</div>
+<div class="modal-body">
+    This break will contain the following:
+    <br><br>
+    <div class="btn-group">
+        <button type="button" class="btn btn-mini btn-primary" ng-model="break_dialog_options.station_id" btn-checkbox>
+            Station ID
+        </button>
+        <button type="button" class="btn btn-mini btn-primary" ng-model="break_dialog_options.event" btn-checkbox>
+            Event Reader
+        </button>
+        <button type="button" class="btn btn-mini btn-primary" ng-model="break_dialog_options.grant" btn-checkbox>
+            Grant Reader
+        </button>
+        <button type="button" class="btn btn-mini btn-primary" ng-model="break_dialog_options.weather" btn-checkbox>
+            Weather Report
+        </button>
+        <button type="button" class="btn btn-mini btn-primary" ng-model="break_dialog_options.gsb" btn-checkbox>
+            GSB Reader
+        </button>
+        <button type="button" class="btn btn-mini btn-primary" ng-model="break_dialog_options.psa" btn-checkbox>
+            PSA Reader
+        </button>
+    </div>
+    <br><br>
+    <input type="text" ng-model="break_dialog_options.notes" placeholder="Notes">
+</div>
+<div class="modal-footer">
+    <button ng-click="confirmBreakDialog(break_dialog_options)" class="btn btn-mini btn-success">
+        <i class="icon-white icon-check"></i>
+        Add Break
+    </button>
+    <button ng-click="cancelBreakDialog()" class="btn btn-mini" >Cancel</button>
+</div>

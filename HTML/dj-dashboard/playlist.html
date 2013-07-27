@@ -1,5 +1,5 @@
 <div class="container-fluid well well-small">
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover" ng-show="track_list.length>0">
         <thead>
             <tr>
                 <th></th>
@@ -10,32 +10,68 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody ui-sortable="{update: editListOrder, axis: y}" ng-model="track_list">
             <tr ng-repeat="track in track_list">
-                <th>{{track.number}}</th>
+                <th ng-show="track.is_track">{{track.track_number}}</th>
+                <th ng-show="!track.is_track"></th>
                 <td>
                     <i class="icon-resize-vertical"></i>
                 </td>
-                <td>{{track.title}}</td>
-                <td>{{track.artist}}</td>
-                <td>{{track.album}}</td>
+                <td ng-show="showTrackTitle(track)">{{track.title}}</td>
+                <td ng-show="!track.is_track" style="font-size: 8pt;"><i>Break: {{track.title}}</i></td>
+                <td ng-show="track.in_edit"><input type="text" placeholder="Track Title" ng-model="track.title"></td>
+                <td ng-show="!track.in_edit">{{track.artist}}</td>
+                <td ng-show="track.in_edit"><input type="text" placeholder="Track Artist" ng-model="track.artist"></td>
+                <td ng-show="!track.in_edit">{{track.album}}</td>
+                <td ng-show="track.in_edit"><input type="text" placeholder="Track Album" ng-model="track.album"></td>
                 <th>
-                    <div class="pull-right">
-                        <button class="btn btn-mini btn-info">
-                            <i class="icon-edit"></i>
-                        </button>
-                        <button class="btn btn-mini btn-danger">
-                            <i class="icon-remove"></i>
-                        </button>
-                    </div>
+                    <span class="pull-right">
+                    <button class="btn btn-mini btn-info"
+                            ng-show="showEditButton(track)"
+                            ng-click="track.in_edit=!track.in_edit">
+                        <i class="icon-edit"></i>
+                    </button>
+                    <button class="btn btn-mini btn-success"
+                            ng-show="track.in_edit"
+                            ng-click="track.in_edit=!track.in_edit">
+                        <i class="icon-check"></i>
+                    </button>
+                    <button class="btn btn-mini btn-danger" ng-click="removeTrack(track)">
+                        <i class="icon-remove"></i>
+                    </button>
+                    </span>
                 </th>
             </tr>
         </tbody>
     </table>
-    <button class="btn btn-mini btn-success">
+    <button class="btn btn-mini btn-success" ng-click="addTrack()">
         <i class="icon-white icon-plus"></i>
         Add Track
     </button>
+    <div class="btn-group">
+        <a class="btn btn-mini btn-warning dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="icon-white icon-plus"></i>
+            Add Break
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a ng-click="addBreak({id: true, event: true})">Station ID and Event Reader</a>
+            </li>
+            <li>
+                <a ng-click="addBreak({grant: true})">Grant Reader</a>
+            </li>
+            <li>
+                <a ng-click="addBreak({weather: true, gsb: true})">Weather Report and GSB Reader</a>
+            </li>
+            <li>
+                <a ng-click="addBreak({psa: true})">PSA Reader</a>
+            </li>
+            <li>
+                <a ng-click="openAddBreakDialog()">Custom ...</a>
+            </li>
+        </ul>
+    </div>
     <button class="btn btn-mini btn-info">
         <i class="icon-white icon-upload"></i>
         Import Playlist
