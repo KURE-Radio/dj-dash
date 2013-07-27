@@ -7,13 +7,12 @@ function DJNavbarCtrl($scope) {
     $scope.navbar_buttons = [
         {
             title: "Transmitter Log",
-            icon:  "icon-list-alt",
-            tooltip:
-                {
-                    text: "View and sign the transmitter log",
-                    show: toolbar_show_default,
-                    hide: toolbar_hide_default
-                },
+            icon: "icon-th-list",
+            tooltip: {
+                text: "Sign in to the KURE transmitter log as broad-operator",
+                show: toolbar_show_default,
+                hide: toolbar_hide_default
+            },
             nav_link: "#/transmitter-log"
         },
         {
@@ -31,6 +30,16 @@ function DJNavbarCtrl($scope) {
             icon: "icon-music",
             tooltip: {
                 text: "Input and Edit your playlist for this week's show",
+                show: toolbar_show_default,
+                hide: toolbar_hide_default
+            },
+            nav_link: "#/playlist"
+        },
+        {
+            title: "Past Playlists",
+            icon: "icon-share-alt",
+            tooltip: {
+                text: "View your playlists from previous weeks",
                 show: toolbar_show_default,
                 hide: toolbar_hide_default
             },
