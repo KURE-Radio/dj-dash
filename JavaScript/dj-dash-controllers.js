@@ -43,7 +43,7 @@ function DJNavbarCtrl($scope) {
                 show: toolbar_show_default,
                 hide: toolbar_hide_default
             },
-            nav_link: "#/playlist"
+            nav_link: "#/past-playlists"
         },
         {
             title: "Grants and Readers",
@@ -82,7 +82,10 @@ function PlaylistCtrl($scope) {
     "use strict";
     $scope.message = "The Playlist feature is currently under construction."
 }
-
+function PastPlaylistsCtrl($scope) {
+    "use strict";
+    $scope.message = "Past playlists feature is currently under construction."
+}
 function GrantsAndReadersCtrl($scope) {
     "use strict";
     $scope.message = "The Grants and Readers feature is currently under construction."
