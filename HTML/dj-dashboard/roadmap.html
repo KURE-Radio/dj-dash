@@ -1,3 +1,43 @@
-<div class="well-large">
-    <span>{{message}}</span>
+<div class="container-fluid">
+    <div class="column-fluid span8" id="playlist-column" style="margin: 1%;">
+        <div class="row-fluid well well-small control-row" id="playlist-track-keyname">
+            <form style="vertical-align: middle;" class="form-inline">
+                <div class="container-fluid control-group">
+                    <div class="column span1">
+                        <div class="row">
+                            <i class="icon-list"></i>
+                        </div>
+                        <div class="row">
+                            <button class="btn-small btn-info" id="playlist-track-keyname-editbutton">
+                                <i class="icon-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="column span11">
+                        <div class="row span12">
+                            <input type="text" placeholder="Track Title" class="span4">
+                            <input type="text" placeholder="Artist" class="span4">
+                            <input type="text" placeholder="Album" class="span4">
+                        </div>
+                        <div class="row span12"></div>
+                        <div class="row span12 pull-left">
+                            <button class="btn-small btn-danger">
+                                <i class="icon-remove"></i>
+                                Remove From Playlist
+                            </button>
+                            <button class="btn-small btn-success">
+                                <i class="icon-plus"></i>
+                                Add To Playlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="column-fluid span4" style="margin: 1%;">
+        <div class="row-fluid">
+
+        </div>
+    </div>
 </div>
