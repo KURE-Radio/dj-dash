@@ -1,4 +1,4 @@
-angular.module('dj-dash', ['ui.bootstrap'])
+angular.module('dj-dash', ['ui.bootstrap', 'dj-dash.services'])
     .config(['$routeProvider', function ($routeProvider) {
         "use strict";
         $routeProvider

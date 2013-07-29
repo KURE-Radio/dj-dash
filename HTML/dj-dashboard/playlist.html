@@ -26,19 +26,24 @@
                 <td ng-show="track.in_edit"><input type="text" placeholder="Track Album" ng-model="track.album"></td>
                 <th>
                     <span class="pull-right">
-                    <button class="btn btn-mini btn-info"
-                            ng-show="showEditButton(track)"
-                            ng-click="track.in_edit=!track.in_edit">
-                        <i class="icon-edit"></i>
-                    </button>
-                    <button class="btn btn-mini btn-success"
-                            ng-show="track.in_edit"
-                            ng-click="track.in_edit=!track.in_edit">
-                        <i class="icon-check"></i>
-                    </button>
-                    <button class="btn btn-mini btn-danger" ng-click="removeTrack(track)">
-                        <i class="icon-remove"></i>
-                    </button>
+                        <button class="btn btn-mini btn-info"
+                                ng-show="showEditButton(track)"
+                                ng-click="track.in_edit=!track.in_edit">
+                            <i class="icon-edit"></i>
+                        </button>
+                        <button class="btn btn-mini btn-success"
+                                ng-show="track.in_edit"
+                                ng-click="track.in_edit=!track.in_edit">
+                            <i class="icon-check"></i>
+                        </button>
+                        <button class="btn btn-mini btn-warning"
+                                ng-show="track.in_edit"
+                                ng-click="clearTrackInEdit(track)">
+                            <i class="icon-repeat"></i>
+                        </button>
+                        <button class="btn btn-mini btn-danger" ng-click="removeTrack(track)">
+                            <i class="icon-remove"></i>
+                        </button>
                     </span>
                 </th>
             </tr>

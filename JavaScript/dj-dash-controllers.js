@@ -61,25 +61,25 @@ function DJNavbarCtrl($scope) {
 
 function TransmitterLogCtrl($scope) {
     "use strict";
-    $scope.message = "The Transmitter Log feature is currently under construction."
+    $scope.message = "The Transmitter Log feature is currently under construction.";
 }
 
 function RoadmapCtrl($scope) {
     "use strict";
-    $scope.message = "The Road-Map feature is currently under construction."
+    $scope.message = "The Road-Map feature is currently under construction.";
 }
 
-function PlaylistCtrl($scope, $dialog) {
+function PlaylistCtrl($scope, $playlist, $dialog) {
     "use strict";
     // Placeholder sample data for prototyping purposes
-    $scope.track_list = [ ];
+    $scope.track_list = $playlist.getState();
 
     $scope.break_dialog_display_options = {
-            backdrop: true,
-            backdropFade: true,
-            dialogFade: true,
-            templateUrl: "break_dialog.html",
-            controller: "AddBreakDialogCtrl"
+        backdrop: true,
+        backdropFade: true,
+        dialogFade: true,
+        templateUrl: "break_dialog.html",
+        controller: "AddBreakDialogCtrl"
     };
 
     $scope.showEditButton = function(track) {
@@ -97,7 +97,7 @@ function PlaylistCtrl($scope, $dialog) {
     $scope.addTrack = function() {
        cancelPreviousEdits();
 
-       $scope.track_list = $scope.track_list.concat([
+       $scope.track_list = $playlist.addEntry([
            {
                track_number: getNextTrackNumber(),
                is_track: true,
@@ -107,13 +107,14 @@ function PlaylistCtrl($scope, $dialog) {
     };
 
     $scope.removeTrack = function(track) {
-        if(track.in_edit) {
+        $scope.track_list = $playlist.removeEntry(track);
+    };
+
+    $scope.clearTrackInEdit = function(track) {
+        if (track.in_edit) {
             track.title = "";
             track.artist = "";
             track.album = "";
-        } else {
-            var track_index = $scope.track_list.indexOf(track);
-            $scope.track_list.splice(track_index, 1);
         }
     };
 
@@ -138,7 +139,7 @@ function PlaylistCtrl($scope, $dialog) {
         if(selected_break_options.notes)
             break_message += " (" + selected_break_options.notes + ")";
 
-        $scope.track_list = $scope.track_list.concat([
+        $scope.track_list = $playlist.addEntry([
             {
                 is_track: false,
                 title: break_message
@@ -182,12 +183,12 @@ function PlaylistCtrl($scope, $dialog) {
 
 function GrantsAndReadersCtrl($scope) {
     "use strict";
-    $scope.message = "The Grants and Readers feature is currently under construction."
+    $scope.message = "The Grants and Readers feature is currently under construction.";
 }
 
 function MusicLibraryCtrl($scope) {
     "use strict";
-    $scope.message = "The Music Library feature is currently under construction."
+    $scope.message = "The Music Library feature is currently under construction.";
 }
 
 function AddBreakDialogCtrl($scope, dialog) {
