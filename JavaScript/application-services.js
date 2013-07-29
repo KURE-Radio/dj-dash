@@ -29,6 +29,11 @@ dashServices.factory('$playlist', function() {
 
     instance.submitState = function() {
         // Package instance.playlist in JSON and send to the server.
+        instance.is_submitted = true;
+    };
+
+    instance.reopenState = function() {
+        instance.is_submitted = false;
     };
 
     instance.flushState = function() {
