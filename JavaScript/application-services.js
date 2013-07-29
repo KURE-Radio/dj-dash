@@ -5,6 +5,8 @@ dashServices.factory('$playlist', function() {
 
     instance.playlist = [];
 
+    instance.is_submitted = false;
+
     instance.addEntry = function(track) {
         instance.playlist = instance.playlist.concat(track);
         return instance.playlist;

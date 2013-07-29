@@ -1,4 +1,4 @@
-<div class="container-fluid well well-small">
+<div class="container-fluid well well-small" ng-hide="$playlist.is_submitted">
     <table class="table table-striped table-hover" ng-show="track_list.length>0">
         <thead>
             <tr>
@@ -85,4 +85,7 @@
         <i class="icon-white icon-play"></i>
         Submit Playlist
     </button>
+</div>
+<div class="container-fluid well well-small" ng-show="$playlist.is_submitted">
+    Formatted playlist and Sharing options will appear here.
 </div>
