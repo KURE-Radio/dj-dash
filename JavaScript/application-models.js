@@ -1,6 +1,5 @@
 angular.module('dj-dash', ['ui.bootstrap', 'dj-dash.services'])
     .config(['$routeProvider', function ($routeProvider) {
-        "use strict";
         $routeProvider
             .when('/transmitter-log', {
                 templateUrl: 'transmitter-log.html',
@@ -26,7 +25,6 @@ angular.module('dj-dash', ['ui.bootstrap', 'dj-dash.services'])
 
 angular.module('bod-dash', ['ui.bootstrap'])
     .config(['$routeProvider', function($routeProvider) {
-        "use strict";
         $routeProvider
             .when('/programming-schedule', {
                 templateUrl: 'programming-schedule.html',

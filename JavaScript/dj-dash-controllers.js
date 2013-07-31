@@ -1,6 +1,5 @@
 
 function DJNavbarCtrl($scope) {
-    "use strict";
     var toolbar_show_default = "500";
     var toolbar_hide_default = "10";
 
@@ -60,19 +59,17 @@ function DJNavbarCtrl($scope) {
 }
 
 function TransmitterLogCtrl($scope) {
-    "use strict";
     $scope.message = "The Transmitter Log feature is currently under construction.";
 }
 
 function RoadmapCtrl($scope) {
-    "use strict";
     $scope.message = "The Road-Map feature is currently under construction.";
 }
 
 function PlaylistCtrl($scope, $playlist, $dialog) {
-    "use strict";
     // Placeholder sample data for prototyping purposes
     $scope.track_list = $playlist.getState();
+    $scope.submission_state = false;
 
     $scope.break_dialog_display_options = {
         backdrop: true,
@@ -160,6 +157,10 @@ function PlaylistCtrl($scope, $playlist, $dialog) {
 
     };
 
+    $scope.submitList = function() {
+        $scope.submission_state = $playlist.submitState();
+    };
+
     function getNextTrackNumber() {
         var next_track_number = 0;
 
@@ -182,12 +183,10 @@ function PlaylistCtrl($scope, $playlist, $dialog) {
 }
 
 function GrantsAndReadersCtrl($scope) {
-    "use strict";
     $scope.message = "The Grants and Readers feature is currently under construction.";
 }
 
 function MusicLibraryCtrl($scope) {
-    "use strict";
     $scope.message = "The Music Library feature is currently under construction.";
 }
 

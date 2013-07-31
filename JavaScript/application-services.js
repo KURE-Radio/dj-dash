@@ -4,7 +4,6 @@ dashServices.factory('$playlist', function() {
     var instance = {};
 
     instance.playlist = [];
-
     instance.is_submitted = false;
 
     instance.addEntry = function(track) {
@@ -30,10 +29,12 @@ dashServices.factory('$playlist', function() {
     instance.submitState = function() {
         // Package instance.playlist in JSON and send to the server.
         instance.is_submitted = true;
+        return instance.is_submitted;
     };
 
     instance.reopenState = function() {
         instance.is_submitted = false;
+        return instance.is_submitted;
     };
 
     instance.flushState = function() {

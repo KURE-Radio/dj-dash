@@ -1,4 +1,4 @@
-<div class="container-fluid well well-small" ng-hide="$playlist.is_submitted">
+<div class="container-fluid well well-small" ng-hide="submission_state">
     <table class="table table-striped table-hover" ng-show="track_list.length>0">
         <thead>
             <tr>
@@ -81,11 +81,11 @@
         <i class="icon-white icon-upload"></i>
         Import Playlist
     </button>
-    <button class="btn btn-mini btn-warning pull-right" ng-show="track_list.length>0">
+    <button class="btn btn-mini btn-warning pull-right" ng-show="track_list.length>0" ng-click="submitList()">
         <i class="icon-white icon-play"></i>
         Submit Playlist
     </button>
 </div>
-<div class="container-fluid well well-small" ng-show="$playlist.is_submitted">
+<div class="container-fluid well well-small" ng-show="submission_state">
     Formatted playlist and Sharing options will appear here.
 </div>
