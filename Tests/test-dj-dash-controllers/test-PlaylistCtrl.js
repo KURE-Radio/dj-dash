@@ -1,10 +1,16 @@
 describe("Playlist View Controller", function() {
+    var $scope;
+    var controller;
     var testTrack;
     var testBreak;
     var testPlaylist;
     var testBreakOptions;
 
     beforeEach(function() {
+        $scope = {};
+
+        controller = $controller('PlaylistCtrl', { $scope: $scope });
+
         testTrack = {
             track_number: 42,
             is_track: true,
@@ -57,5 +63,7 @@ describe("Playlist View Controller", function() {
         };
     });
 
-    
+    it("is created with the correct state", function() {
+       spyOn('getState');
+    });
 });

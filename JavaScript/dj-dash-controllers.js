@@ -1,5 +1,6 @@
+var dashControllers = angular.module('dj-dash.controllers', []);
 
-function DJNavbarCtrl($scope) {
+dashControllers.controller('DJNavbarCtrl', ['$scope', function($scope) {
     var toolbar_show_default = "500";
     var toolbar_hide_default = "10";
 
@@ -56,18 +57,17 @@ function DJNavbarCtrl($scope) {
             nav_link: "#/library"
         }
     ];
-}
+}]);
 
-function TransmitterLogCtrl($scope) {
+dashControllers.controller('TransmitterLogCtrl', ['$scope', function($scope) {
     $scope.message = "The Transmitter Log feature is currently under construction.";
-}
+}]);
 
-function RoadmapCtrl($scope) {
+dashControllers.controller('RoadmapCtrl', ['$scope', function($scope) {
     $scope.message = "The Road-Map feature is currently under construction.";
-}
+}]);
 
-function PlaylistCtrl($scope, $playlist, $dialog) {
-    // Placeholder sample data for prototyping purposes
+dashControllers.controller('PlaylistCtrl', ['$scope', '$playlist', '$dialog', function($scope, $playlist, $dialog) {
     $scope.track_list = $playlist.getState();
     $scope.submission_state = false;
 
@@ -79,35 +79,35 @@ function PlaylistCtrl($scope, $playlist, $dialog) {
         controller: "AddBreakDialogCtrl"
     };
 
-    $scope.showEditButton = function(track) {
+    $scope.showEditButton = function (track) {
         return(track.is_track && (!track.in_edit));
     };
 
-    $scope.showConfirmButton = function(track) {
+    $scope.showConfirmButton = function (track) {
         return(track.is_track && track.in_edit);
     };
 
-    $scope.showTrackTitle = function(track) {
+    $scope.showTrackTitle = function (track) {
         return(track.is_track && (!track.in_edit));
     };
 
-    $scope.addTrack = function() {
-       cancelPreviousEdits();
+    $scope.addTrack = function () {
+        cancelPreviousEdits();
 
-       $scope.track_list = $playlist.addEntry([
-           {
-               track_number: getNextTrackNumber(),
-               is_track: true,
-               in_edit: true
-           }
-       ]);
+        $scope.track_list = $playlist.addEntry([
+            {
+                track_number: getNextTrackNumber(),
+                is_track: true,
+                in_edit: true
+            }
+        ]);
     };
 
-    $scope.removeTrack = function(track) {
+    $scope.removeTrack = function (track) {
         $scope.track_list = $playlist.removeEntry(track);
     };
 
-    $scope.clearTrackInEdit = function(track) {
+    $scope.clearTrackInEdit = function (track) {
         if (track.in_edit) {
             track.title = "";
             track.artist = "";
@@ -115,25 +115,25 @@ function PlaylistCtrl($scope, $playlist, $dialog) {
         }
     };
 
-    $scope.addBreak = function(selected_break_options) {
+    $scope.addBreak = function (selected_break_options) {
         var break_message = "";
 
-        if(selected_break_options.id)
+        if (selected_break_options.id)
             break_message += "Station ID, ";
-        if(selected_break_options.event)
+        if (selected_break_options.event)
             break_message += "Event Reader, ";
-        if(selected_break_options.grant)
+        if (selected_break_options.grant)
             break_message += "Grant Reader, ";
-        if(selected_break_options.weather)
+        if (selected_break_options.weather)
             break_message += "Weather Report, ";
-        if(selected_break_options.gsb)
+        if (selected_break_options.gsb)
             break_message += "GSB Reader, ";
-        if(selected_break_options.psa)
+        if (selected_break_options.psa)
             break_message += "PSA Reader, ";
 
         break_message = break_message.replace(/\s$/, '').replace(/,$/, '');
 
-        if(selected_break_options.notes)
+        if (selected_break_options.notes)
             break_message += " (" + selected_break_options.notes + ")";
 
         $scope.track_list = $playlist.addEntry([
@@ -144,28 +144,28 @@ function PlaylistCtrl($scope, $playlist, $dialog) {
         ]);
     };
 
-    $scope.openAddBreakDialog = function() {
+    $scope.openAddBreakDialog = function () {
         var d = $dialog.dialog($scope.break_dialog_display_options);
         d.open().then(function (selected_dialog_options) {
-            if(selected_dialog_options) {
+            if (selected_dialog_options) {
                 $scope.addBreak(selected_dialog_options);
             }
         });
     };
 
-    $scope.editListOrder = function() {
+    $scope.editListOrder = function () {
 
     };
 
-    $scope.submitList = function() {
+    $scope.submitList = function () {
         $scope.submission_state = $playlist.submitState();
     };
 
     function getNextTrackNumber() {
         var next_track_number = 0;
 
-        for(var index = $scope.track_list.length - 1; index >= 0; index--) {
-            if($scope.track_list[index].track_number) {
+        for (var index = $scope.track_list.length - 1; index >= 0; index--) {
+            if ($scope.track_list[index].track_number) {
                 next_track_number = $scope.track_list[index].track_number;
                 break;
             }
@@ -175,27 +175,27 @@ function PlaylistCtrl($scope, $playlist, $dialog) {
     }
 
     function cancelPreviousEdits() {
-        for(var index = 0; index < $scope.track_list.length; index++) {
-            if($scope.track_list[index].is_track)
+        for (var index = 0; index < $scope.track_list.length; index++) {
+            if ($scope.track_list[index].is_track)
                 $scope.track_list[index].in_edit = false;
         }
     }
-}
+}]);
 
-function GrantsAndReadersCtrl($scope) {
+dashControllers.controller('GrantsAndReadersCtrl', ['$scope', function($scope) {
     $scope.message = "The Grants and Readers feature is currently under construction.";
-}
+}]);
 
-function MusicLibraryCtrl($scope) {
+dashControllers.controller('MusicLibraryCtrl', ['$scope', function($scope) {
     $scope.message = "The Music Library feature is currently under construction.";
-}
+}]);
 
-function AddBreakDialogCtrl($scope, dialog) {
-    $scope.confirmBreakDialog = function(selected_dialog_options) {
+dashControllers.controller('AddBreakDialogCtrl', ['$scope', 'dialog', function($scope, dialog) {
+    $scope.confirmBreakDialog = function (selected_dialog_options) {
         dialog.close(selected_dialog_options);
     };
 
-    $scope.cancelBreakDialog = function() {
+    $scope.cancelBreakDialog = function () {
         dialog.close();
     }
-}
+}]);
