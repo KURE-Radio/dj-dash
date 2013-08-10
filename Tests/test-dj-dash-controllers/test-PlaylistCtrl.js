@@ -1,22 +1,22 @@
-var testTargetControllers = angular.module('dj-dash.controllers');
-var testTargetServices = angular.module('dj-dash.services');
-
 describe("Playlist View Controller", function() {
     var $scope;
-    var $playlist;
+    var playlist_service;
     var controller;
     var testTrack;
     var testBreak;
     var testPlaylist;
     var testBreakOptions;
 
-    beforeEach(function() {
-        $scope = {};
+    beforeEach(inject(function($controller, playlist, $rootScope) {
+        $scope = $rootScope.$new();
 
-        $playlist = testTargetServices('$playlist');
-        spyOn($playlist, 'getState');
+        module('dj-dash.controllers');
+        module('dj-dash.services');
 
-        controller = testTargetControllers('PlaylistCtrl', { $scope: $scope });
+        playlist_service = playlist;
+        controller = $controller('PlaylistCtrl', {$scope: $scope});
+
+        spyOn(playlist, 'getState');
 
         testTrack = {
             track_number: 42,
@@ -68,10 +68,10 @@ describe("Playlist View Controller", function() {
             psa: null,
             notes: null
         };
-    });
+    }));
 
     it("is created with the correct state", function() {
-        expect($playlist.getState).toHaveBeenCalledWith(null);
+        expect(playlist_service.getState).toHaveBeenCalledWith();
         expect($scope.track_list).toEqual([]);
         expect($scope.submission_state).toBe(false);
         expect($scope.break_dialog_display_options).toBe(
@@ -203,7 +203,14 @@ describe("Playlist View Controller", function() {
     });
 
     describe("AddTrack Function", function() {
+        beforeEach(function () {
+            spyOn(controller, 'cancelPreviousEdits');
+            spyOn(playlist_service, 'addEntry');
+        });
 
+        it("cancels any on-going track edits", function() {
+            expect(controller.cancelPreviousEdits()).toHaveBeenCalled();
+        })
     });
 
     describe("RemoveTrack Function", function() {

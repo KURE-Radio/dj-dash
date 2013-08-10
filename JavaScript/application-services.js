@@ -1,6 +1,6 @@
 var dashServices = angular.module('dj-dash.services', []);
 
-dashServices.factory('$playlist', function() {
+dashServices.factory('playlist', function() {
     var instance = {};
 
     instance.playlist = [];

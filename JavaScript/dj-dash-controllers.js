@@ -67,8 +67,8 @@ dashControllers.controller('RoadmapCtrl', ['$scope', function($scope) {
     $scope.message = "The Road-Map feature is currently under construction.";
 }]);
 
-dashControllers.controller('PlaylistCtrl', ['$scope', '$playlist', '$dialog', function($scope, $playlist, $dialog) {
-    $scope.track_list = $playlist.getState();
+dashControllers.controller('PlaylistCtrl', ['$scope', 'playlist', '$dialog', function($scope, playlist, $dialog) {
+    $scope.track_list = playlist.getState();
     $scope.submission_state = false;
 
     $scope.break_dialog_display_options = {
@@ -92,11 +92,11 @@ dashControllers.controller('PlaylistCtrl', ['$scope', '$playlist', '$dialog', fu
     };
 
     $scope.addTrack = function () {
-        cancelPreviousEdits();
+        $scope.cancelPreviousEdits();
 
-        $scope.track_list = $playlist.addEntry([
+        $scope.track_list = playlist.addEntry([
             {
-                track_number: getNextTrackNumber(),
+                track_number: $scope.getNextTrackNumber(),
                 is_track: true,
                 in_edit: true
             }
@@ -104,7 +104,7 @@ dashControllers.controller('PlaylistCtrl', ['$scope', '$playlist', '$dialog', fu
     };
 
     $scope.removeTrack = function (track) {
-        $scope.track_list = $playlist.removeEntry(track);
+        $scope.track_list = playlist.removeEntry(track);
     };
 
     $scope.clearTrackInEdit = function (track) {
@@ -136,7 +136,7 @@ dashControllers.controller('PlaylistCtrl', ['$scope', '$playlist', '$dialog', fu
         if (selected_break_options.notes)
             break_message += " (" + selected_break_options.notes + ")";
 
-        $scope.track_list = $playlist.addEntry([
+        $scope.track_list = playlist.addEntry([
             {
                 is_track: false,
                 title: break_message
@@ -158,10 +158,10 @@ dashControllers.controller('PlaylistCtrl', ['$scope', '$playlist', '$dialog', fu
     };
 
     $scope.submitList = function () {
-        $scope.submission_state = $playlist.submitState();
+        $scope.submission_state = playlist.submitState();
     };
 
-    function getNextTrackNumber() {
+    $scope.getNextTrackNumber = function getNextTrackNumber() {
         var next_track_number = 0;
 
         for (var index = $scope.track_list.length - 1; index >= 0; index--) {
@@ -172,9 +172,9 @@ dashControllers.controller('PlaylistCtrl', ['$scope', '$playlist', '$dialog', fu
         }
 
         return next_track_number + 1;
-    }
+    };
 
-    function cancelPreviousEdits() {
+    $scope.cancelPreviousEdits = function cancelPreviousEdits() {
         for (var index = 0; index < $scope.track_list.length; index++) {
             if ($scope.track_list[index].is_track)
                 $scope.track_list[index].in_edit = false;
