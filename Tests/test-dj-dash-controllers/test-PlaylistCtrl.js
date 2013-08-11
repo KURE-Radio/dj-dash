@@ -11,7 +11,7 @@ describe("Playlist View Controller", function() {
 
     beforeEach(module('dj-dash.controllers'));
     beforeEach(module('dj-dash.services'));
-    beforeEach(module('ui.bootstrap'));
+    beforeEach(module('ui.bootstrap.dialog'));
 
     beforeEach(inject(function ($rootScope) {
         $scope = $rootScope.$new();
@@ -436,7 +436,56 @@ describe("Playlist View Controller", function() {
     });
 
     describe("OpenAddBreakDialog Function", function() {
+        var rootScope;
+        var http;
+        var deferred_service_defer_reference;
+        var playlist_controller_addBreak;
+        var dialog_service;
+        var dialog_service_dialog;
 
+        var fakeDialog = {
+            open: function () {
+                return {
+                    then: function (options) {
+                        return(options);
+                    }
+                };
+            }
+        };
+
+        beforeEach(inject(function($dialog, $rootScope, $http, $q) {
+            rootScope = $rootScope;
+            dialog_service = $dialog;
+            deferred_service_defer_reference = $q.defer();
+            playlist_controller_addBreak = spyOn($scope, 'addBreak');
+            dialog_service_dialog = spyOn(dialog_service, 'dialog').andReturn(fakeDialog);
+        }));
+
+        it("should create a dialog using the options defined in the controller", function() {
+            deferred_service_defer_reference.resolve();
+            spyOn(dialog_service.dialog(), 'open').andReturn(deferred_service_defer_reference.promise);
+            $scope.openAddBreakDialog();
+
+            expect(dialog_service_dialog).toHaveBeenCalledWith($scope.break_dialog_display_options);
+        });
+
+        it("should add a break if options were selected on the dialog", function() {
+            deferred_service_defer_reference.resolve("Testing Options");
+            spyOn(dialog_service.dialog(), 'open').andReturn(deferred_service_defer_reference.promise);
+            $scope.openAddBreakDialog();
+            rootScope.$apply();
+
+            expect(playlist_controller_addBreak).toHaveBeenCalledWith("Testing Options");
+        });
+
+        it("should not add a break if no options were selected on the dialog", function() {
+            deferred_service_defer_reference.resolve();
+            spyOn(dialog_service.dialog(), 'open').andReturn(deferred_service_defer_reference.promise);
+            $scope.openAddBreakDialog();
+            rootScope.$apply();
+
+            expect(playlist_controller_addBreak).not.toHaveBeenCalled();
+        })
     });
 
     describe("SubmitList Function", function() {
