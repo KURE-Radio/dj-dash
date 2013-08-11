@@ -1,5 +1,5 @@
 angular.module('dj-dash', ['ui.bootstrap', 'dj-dash.controllers', 'dj-dash.services'])
-    .config(['$routeProvider', function ($routeProvider, $controller) {
+    .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/transmitter-log', {
                 templateUrl: 'transmitter-log.html',

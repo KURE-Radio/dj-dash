@@ -179,7 +179,7 @@ dashControllers.controller('PlaylistCtrl', ['$scope', 'playlist', '$dialog', fun
             if ($scope.track_list[index].is_track)
                 $scope.track_list[index].in_edit = false;
         }
-    }
+    };
 }]);
 
 dashControllers.controller('GrantsAndReadersCtrl', ['$scope', function($scope) {
@@ -197,5 +197,5 @@ dashControllers.controller('AddBreakDialogCtrl', ['$scope', 'dialog', function($
 
     $scope.cancelBreakDialog = function () {
         dialog.close();
-    }
+    };
 }]);
