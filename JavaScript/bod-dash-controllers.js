@@ -48,7 +48,7 @@ function BODNavbarCtrl($scope) {
                 },
                 {
                     title: "Grants",
-                    icon: "icon-gift",
+                    icon: "icon-asterisk",
                     nav_link: "#/edit-grants"
                 }
             ]

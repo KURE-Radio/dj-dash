@@ -14,6 +14,10 @@ angular.module('dj-dash', ['ui.bootstrap'])
                 templateUrl: 'playlist.html',
                 controller: PlaylistCtrl
             })
+            .when('/past-playlists', {
+                templateUrl: 'past-playlists.html',
+                controller: PastPlaylistsCtrl
+            })
             .when('/grants-and-readers', {
                 templateUrl: 'grants-and-readers.html',
                 controller: GrantsAndReadersCtrl

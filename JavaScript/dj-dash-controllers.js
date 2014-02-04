@@ -7,13 +7,12 @@ function DJNavbarCtrl($scope) {
     $scope.navbar_buttons = [
         {
             title: "Transmitter Log",
-            icon:  "icon-list-alt",
-            tooltip:
-                {
-                    text: "View and sign the transmitter log",
-                    show: toolbar_show_default,
-                    hide: toolbar_hide_default
-                },
+            icon: "icon-th-list",
+            tooltip: {
+                text: "Sign in to the KURE transmitter log as broad-operator",
+                show: toolbar_show_default,
+                hide: toolbar_hide_default
+            },
             nav_link: "#/transmitter-log"
         },
         {
@@ -35,6 +34,16 @@ function DJNavbarCtrl($scope) {
                 hide: toolbar_hide_default
             },
             nav_link: "#/playlist"
+        },
+        {
+            title: "Past Playlists",
+            icon: "icon-share-alt",
+            tooltip: {
+                text: "View your playlists from previous weeks",
+                show: toolbar_show_default,
+                hide: toolbar_hide_default
+            },
+            nav_link: "#/past-playlists"
         },
         {
             title: "Grants and Readers",
@@ -73,7 +82,10 @@ function PlaylistCtrl($scope) {
     "use strict";
     $scope.message = "The Playlist feature is currently under construction."
 }
-
+function PastPlaylistsCtrl($scope) {
+    "use strict";
+    $scope.message = "Past playlists feature is currently under construction."
+}
 function GrantsAndReadersCtrl($scope) {
     "use strict";
     $scope.message = "The Grants and Readers feature is currently under construction."
